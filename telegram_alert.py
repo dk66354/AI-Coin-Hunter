@@ -4,7 +4,7 @@ from config import BOT_TOKEN, CHAT_ID
 # Duplicate alerts ko rokne ke liye
 import time
 
-_sent_alerts = {}
+_sent_alerts = set()
 
 def send_alert(symbol, message):
 
