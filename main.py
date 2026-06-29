@@ -43,10 +43,6 @@ def run_scanner():
 
         if current_oi is None:
             continue
-        # Reject weak Open Interest
-
-        if oi_change < 3:
-            continue
 
         # -----------------------------
         # Breakout

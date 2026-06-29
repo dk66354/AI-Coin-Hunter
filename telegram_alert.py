@@ -13,9 +13,9 @@ def send_alert(symbol, message):
         print(f"Alert already sent for {symbol}")
         return False
     
-    print(BOT_TOKEN)
+    #print(BOT_TOKEN)
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    print(url)
+    #print(url)
 
     payload = {
         "chat_id": CHAT_ID,
@@ -30,8 +30,7 @@ def send_alert(symbol, message):
             timeout=10
         )
 
-        print("Status Code :", response.status_code)
-        print("Response    :", response.text)
+        
 
         if response.status_code == 200:
 

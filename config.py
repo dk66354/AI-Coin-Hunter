@@ -21,9 +21,9 @@ TOP_RESULTS = 10
 # Filters
 
 MIN_VOLUME = 5              # Million USDT
-MAX_VOLUME = 80             # Million USDT
+MAX_VOLUME = 100            # Million USDT
 
-MIN_SPIKE = 1.8             # 20% Above Average
+MIN_SPIKE = 1.20             # 20% Above Average
 
 MIN_OI_CHANGE = 0.0
 
@@ -31,7 +31,7 @@ BREAKOUT_DISTANCE = 1.50     # %
 
 # Alert Rules
 
-ALERT_MIN_SCORE = 42
+ALERT_MIN_SCORE = 40
 
 # Scoring
 

@@ -34,15 +34,13 @@ def get_filtered_coins():
                     continue
 
                 coins.append({
-
                     "symbol": symbol,
                     "price": float(coin["lastPrice"]),
                     "change": float(coin["priceChangePercent"]),
                     "volume": volume
-
                 })
 
-            except:
+            except Exception:
                 continue
 
         return coins
@@ -50,13 +48,21 @@ def get_filtered_coins():
     except Exception as e:
 
         print("Scanner Error :", e)
-
         return []
+
+
 if __name__ == "__main__":
 
     coins = get_filtered_coins()
 
+    print("=" * 60)
     print(f"Coins Found : {len(coins)}")
+    print("=" * 60)
 
     for coin in coins[:10]:
-        print(coin)
+        print(
+            f"{coin['symbol']} | "
+            f"Price: {coin['price']} | "
+            f"Change: {coin['change']}% | "
+            f"Volume: {round(coin['volume'], 2)}M"
+        )
