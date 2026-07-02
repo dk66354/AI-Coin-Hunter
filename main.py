@@ -12,7 +12,7 @@ from telegram_alert import send_alert
 def print_header():
 
     print("\n" + "=" * 100)
-    print("                     AI COIN HUNTER V4.0")
+    print("                     AI COIN HUNTER V5.0")
     print("=" * 100)
 
 
@@ -39,10 +39,14 @@ def run_scanner():
         # Open Interest
         # -----------------------------
 
-        current_oi, oi_change = get_open_interest(symbol)
+        oi_data = get_open_interest(symbol)
 
-        if current_oi is None:
+        if oi_data is None:
             continue
+
+        current_oi = oi_data["current_oi"]
+        oi_change = oi_data["oi_change"]
+        oi_strength = oi_data["strength"]
 
         # -----------------------------
         # Breakout
@@ -64,7 +68,7 @@ def run_scanner():
             oi_change=oi_change,
             breakout=breakout_data["breakout"]
 
-        )
+)
 
         final_results.append({
 
@@ -78,9 +82,13 @@ def run_scanner():
 
             "spike": spike_data["spike"],
 
+            "spike_strength": spike_data["strength"],
+
             "oi": current_oi,
 
             "oi_change": oi_change,
+
+            "oi_strength": oi_strength,
 
             "breakout": breakout_data["breakout"],
 
@@ -135,8 +143,10 @@ while True:
             print(f"24h Change   : {coin['change']:.2f}%")
             print(f"Volume       : {coin['volume']:.2f} M")
             print(f"Spike        : {coin['spike']:.2f}x")
+            print(f"Spike Power  : {coin['spike_strength']}")
             print(f"Current OI   : {coin['oi']:.0f}")
             print(f"OI Change    : {coin['oi_change']:.2f}%")
+            print(f"OI Strength  : {coin['oi_strength']}")
             print(f"Breakout     : {coin['breakout']}")
             print(f"Status       : {coin['status']}")
             print(f"Distance     : {coin['distance']}%")
@@ -154,7 +164,7 @@ while True:
                 and coin["status"] == "BREAKOUT READY"
             ):
 
-                message = f"""🚨 AI COIN HUNTER V4 🚨
+                message = f"""🚨 AI COIN HUNTER V5 🚨
 
 Coin : {coin['symbol']}
 
@@ -164,7 +174,9 @@ Coin : {coin['symbol']}
 💰 Price : {coin['price']}
 📈 Volume : {coin['volume']:.2f} M
 🔥 Spike : {coin['spike']:.2f}x
+⚡ Spike Strength : {coin['spike_strength']}
 📊 OI Change : {coin['oi_change']:.2f}%
+💪 OI Strength : {coin['oi_strength']}
 🚀 Status : {coin['status']}
 📍 Distance : {coin['distance']}%
 

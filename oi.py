@@ -24,30 +24,61 @@ def get_open_interest(symbol):
         )
 
         if len(history) < 2:
-            return current_oi, 0.0
+            return None
 
         previous_oi = float(history[0]["sumOpenInterest"])
 
-        if previous_oi == 0:
-            return current_oi, 0.0
+        if previous_oi <= 0:
+            return None
 
         oi_change = (
             (current_oi - previous_oi)
             / previous_oi
         ) * 100
 
-        return current_oi, round(oi_change, 2)
+        oi_change = round(oi_change, 2)
+
+        # ---------------------------------
+        # OI Strength
+        # ---------------------------------
+
+        if oi_change >= EXTREME_OI:
+            strength = "EXTREME"
+
+        elif oi_change >= STRONG_OI:
+            strength = "STRONG"
+
+        elif oi_change >= MIN_OI_CHANGE:
+            strength = "GOOD"
+
+        else:
+            strength = "WEAK"
+
+        return {
+
+            "current_oi": round(current_oi, 2),
+
+            "previous_oi": round(previous_oi, 2),
+
+            "oi_change": oi_change,
+
+            "strength": strength
+
+        }
 
     except Exception as e:
 
         print(f"OI Error ({symbol}) : {e}")
 
-        return None, None
+        return None
 
 
 if __name__ == "__main__":
 
-    oi, change = get_open_interest("BTCUSDT")
+    result = get_open_interest("BTCUSDT")
 
-    print(f"Current OI : {oi}")
-    print(f"OI Change  : {change}%")
+    print("\n========== OPEN INTEREST TEST ==========\n")
+
+    print(result)
+
+    print("\n========================================\n")

@@ -6,51 +6,72 @@ def calculate_score(volume, spike, oi_change, breakout=False):
     score = 0
     reasons = []
 
-    # -------------------------
+    # ==========================================
     # Volume
-    # -------------------------
+    # ==========================================
+
     if MIN_VOLUME <= volume <= MAX_VOLUME:
         score += VOLUME_SCORE
         reasons.append("✅ Good Trading Volume")
 
-    # -------------------------
-    # Volume Spike
-    # -------------------------
-    if spike >= 3:
-        score += SPIKE_SCORE
-        reasons.append("🔥 Strong Volume Spike")
+    elif volume > MAX_VOLUME:
+        score += 5
+        reasons.append("⚠ High Trading Volume")
 
-    elif spike >= 2:
-        score += 10
-        reasons.append("✅ Moderate Volume Spike")
+    # ==========================================
+    # Volume Spike
+    # ==========================================
+
+    if spike >= EXTREME_SPIKE:
+        score += SPIKE_SCORE
+        reasons.append("🚀 EXTREME Volume Spike")
+
+    elif spike >= STRONG_SPIKE:
+        score += 12
+        reasons.append("🔥 STRONG Volume Spike")
 
     elif spike >= MIN_SPIKE:
-        score += 5
-        reasons.append("⚠ Small Volume Spike")
+        score += 8
+        reasons.append("✅ GOOD Volume Spike")
 
-    # -------------------------
+    else:
+        reasons.append("❌ Weak Volume Spike")
+
+    # ==========================================
     # Open Interest
-    # -------------------------
-    if oi_change >= 10:
+    # ==========================================
+
+    if oi_change >= EXTREME_OI:
         score += OI_SCORE
-        reasons.append("🚀 Strong OI Increase")
+        reasons.append("🚀 EXTREME OI Build-up")
 
-    elif oi_change >= 5:
-        score += 15
-        reasons.append("✅ Healthy OI Increase")
+    elif oi_change >= STRONG_OI:
+        score += 16
+        reasons.append("🔥 STRONG OI Build-up")
 
-    elif oi_change > 0:
-        score += 5
-        reasons.append("⚠ Slight OI Increase")
+    elif oi_change >= MIN_OI_CHANGE:
+        score += 10
+        reasons.append("✅ GOOD OI Build-up")
 
-    # -------------------------
+    else:
+        reasons.append("❌ Weak OI")
+
+    # ==========================================
     # Breakout
-    # -------------------------
+    # ==========================================
+
     if breakout:
-        score += 25
+        score += BREAKOUT_SCORE
         reasons.append("🔥 Breakout Ready")
 
-    probability = round((score / MAX_SCORE) * 100)
+    # ==========================================
+    # Probability
+    # ==========================================
+
+    probability = min(
+        round((score / MAX_SCORE) * 100),
+        100
+    )
 
     return score, probability, reasons
 
@@ -64,6 +85,8 @@ if __name__ == "__main__":
         breakout=True
     )
 
+    print("\n========== SCORE TEST ==========\n")
+
     print("Score :", score)
     print("Probability :", probability, "%")
 
@@ -71,3 +94,5 @@ if __name__ == "__main__":
 
     for reason in reasons:
         print(reason)
+
+    print("\n===============================\n")

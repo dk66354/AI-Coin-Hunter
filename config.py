@@ -1,5 +1,5 @@
 # ============================================
-# AI COIN HUNTER V4
+# AI COIN HUNTER V5
 # Configuration File
 # ============================================
 
@@ -13,27 +13,60 @@ BINANCE_API_SECRET = ""
 BOT_TOKEN = "8941575381:AAFzS-0e6Zcgz3fjOs978MqtJMU1S7UQ48s"
 CHAT_ID = "5839327080"
 
+# ============================================
 # Scanner
+# ============================================
 
-SCAN_INTERVAL = 300          # seconds
+SCAN_INTERVAL = 300          # 5 Minutes
 TOP_RESULTS = 10
 
-# Filters
+# ============================================
+# Volume Filter
+# ============================================
 
-MIN_VOLUME = 5              # Million USDT
-MAX_VOLUME = 100            # Million USDT
+MIN_VOLUME = 30              # Million USDT
+MAX_VOLUME = 250             # Million USDT
 
-MIN_SPIKE = 1.20             # 20% Above Average
+# ============================================
+# Volume Spike
+# ============================================
 
-MIN_OI_CHANGE = 0.0
+MIN_SPIKE = 1.30
 
-BREAKOUT_DISTANCE = 1.50     # %
+STRONG_SPIKE = 2.00
+EXTREME_SPIKE = 3.00
 
+# ============================================
+# Open Interest
+# ============================================
+
+MIN_OI_CHANGE = 3.0
+
+STRONG_OI = 5.0
+EXTREME_OI = 10.0
+
+# ============================================
+# Breakout
+# ============================================
+
+BREAKOUT_DISTANCE = 0.80     # %
+
+# ============================================
+# ATR Filter
+# ============================================
+
+ATR_PERIOD = 14
+MIN_ATR_PERCENT = 2.5
+
+# ============================================
 # Alert Rules
+# ============================================
 
-ALERT_MIN_SCORE = 40
+ALERT_MIN_SCORE = 45
 
+# ============================================
 # Scoring
+# ============================================
 
 VOLUME_SCORE = 10
 SPIKE_SCORE = 15

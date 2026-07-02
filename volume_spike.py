@@ -17,23 +17,46 @@ def get_volume_spike(symbol):
             limit=20
         )
 
+        if len(candles) < 20:
+            return None
+
         volumes = [float(candle[5]) for candle in candles]
 
-        if len(volumes) < 20:
-            return None
-
         last_volume = volumes[-1]
-        avg_volume = sum(volumes[:-1]) / 19
 
-        if avg_volume == 0:
+        average_volume = sum(volumes[:-1]) / (len(volumes) - 1)
+
+        if average_volume <= 0:
             return None
 
-        spike = round(last_volume / avg_volume, 2)
+        spike = round(last_volume / average_volume, 2)
+
+        # -----------------------------
+        # Spike Strength
+        # -----------------------------
+
+        if spike >= EXTREME_SPIKE:
+            strength = "EXTREME"
+
+        elif spike >= STRONG_SPIKE:
+            strength = "STRONG"
+
+        elif spike >= MIN_SPIKE:
+            strength = "GOOD"
+
+        else:
+            strength = "WEAK"
 
         return {
-            "last_volume": last_volume,
-            "average_volume": avg_volume,
-            "spike": spike
+
+            "last_volume": round(last_volume, 2),
+
+            "average_volume": round(average_volume, 2),
+
+            "spike": spike,
+
+            "strength": strength
+
         }
 
     except Exception as e:
@@ -47,4 +70,8 @@ if __name__ == "__main__":
 
     result = get_volume_spike("BTCUSDT")
 
+    print("\n========== VOLUME SPIKE TEST ==========\n")
+
     print(result)
+
+    print("\n=======================================\n")
