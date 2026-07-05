@@ -1,14 +1,18 @@
 # ============================================
-# AI COIN HUNTER V5
+# AI COIN HUNTER V6
 # Configuration File
 # ============================================
 
+# ============================================
 # Binance
+# ============================================
 
 BINANCE_API_KEY = ""
 BINANCE_API_SECRET = ""
 
+# ============================================
 # Telegram
+# ============================================
 
 BOT_TOKEN = "8941575381:AAFzS-0e6Zcgz3fjOs978MqtJMU1S7UQ48s"
 CHAT_ID = "5839327080"
@@ -17,52 +21,64 @@ CHAT_ID = "5839327080"
 # Scanner
 # ============================================
 
-SCAN_INTERVAL = 300          # 5 Minutes
+SCAN_INTERVAL = 600          # Seconds
 TOP_RESULTS = 10
 
 # ============================================
 # Volume Filter
 # ============================================
 
-MIN_VOLUME = 30              # Million USDT
-MAX_VOLUME = 250             # Million USDT
+MIN_VOLUME = 5                # Million USDT
+MAX_VOLUME = 5000             # Million USDT
 
 # ============================================
-# Volume Spike
+# Volume Expansion (V6)
 # ============================================
 
-MIN_SPIKE = 1.30
+VOLUME_LOOKBACK = 20
 
-STRONG_SPIKE = 2.00
-EXTREME_SPIKE = 3.00
+MIN_VOLUME_EXPANSION = 1.30
+STRONG_VOLUME_EXPANSION = 2.00
+EXTREME_VOLUME_EXPANSION = 3.50
 
 # ============================================
-# Open Interest
+# Open Interest (V5 Compatibility)
 # ============================================
 
-MIN_OI_CHANGE = 3.0
+MIN_OI_CHANGE = 2.0
+STRONG_OI = 4.0
+EXTREME_OI = 8.0
 
-STRONG_OI = 5.0
-EXTREME_OI = 10.0
+# ============================================
+# Open Interest Expansion (V6)
+# ============================================
+
+MIN_OI_EXPANSION = 3.0
+STRONG_OI_EXPANSION = 6.0
+EXTREME_OI_EXPANSION = 10.0
 
 # ============================================
 # Breakout
 # ============================================
 
-BREAKOUT_DISTANCE = 0.80     # %
+BREAKOUT_DISTANCE = 1.20
+MAX_BREAKOUT_DISTANCE = 1.20
 
 # ============================================
-# ATR Filter
+# ATR
 # ============================================
 
 ATR_PERIOD = 14
-MIN_ATR_PERCENT = 2.5
+ATR_LOOKBACK = 20
+
+MIN_ATR_PERCENT = 4.0
 
 # ============================================
 # Alert Rules
 # ============================================
 
-ALERT_MIN_SCORE = 45
+ALERT_MIN_SCORE = 40
+FINAL_ALERT_SCORE = 70
 
 # ============================================
 # Scoring

@@ -27,11 +27,11 @@ def get_filtered_coins():
 
                 volume = float(coin["quoteVolume"]) / 1_000_000
 
+                # Skip extremely illiquid coins only
                 if volume < MIN_VOLUME:
                     continue
 
-                if volume > MAX_VOLUME:
-                    continue
+                # Ignore volume upper limit in V6
 
                 coins.append({
                     "symbol": symbol,
