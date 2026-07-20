@@ -37,32 +37,32 @@ MAX_VOLUME = 5000             # Million USDT
 
 VOLUME_LOOKBACK = 20
 
-MIN_VOLUME_EXPANSION = 1.30
-STRONG_VOLUME_EXPANSION = 2.00
-EXTREME_VOLUME_EXPANSION = 3.50
+MIN_VOLUME_EXPANSION = 1.10
+STRONG_VOLUME_EXPANSION = 1.80
+EXTREME_VOLUME_EXPANSION = 3.00
 
 # ============================================
 # Open Interest (V5 Compatibility)
 # ============================================
 
-MIN_OI_CHANGE = 2.0
-STRONG_OI = 4.0
-EXTREME_OI = 8.0
+MIN_OI_CHANGE = 0.5
+STRONG_OI = 3.0
+EXTREME_OI = 6.0
 
 # ============================================
 # Open Interest Expansion (V6)
 # ============================================
 
-MIN_OI_EXPANSION = 3.0
-STRONG_OI_EXPANSION = 6.0
-EXTREME_OI_EXPANSION = 10.0
+MIN_OI_EXPANSION = 1.50
+STRONG_OI_EXPANSION = 4.0
+EXTREME_OI_EXPANSION = 8.0
 
 # ============================================
 # Breakout
 # ============================================
 
-BREAKOUT_DISTANCE = 1.20
-MAX_BREAKOUT_DISTANCE = 1.20
+BREAKOUT_DISTANCE = 2.50
+MAX_BREAKOUT_DISTANCE = 2.50
 
 # ============================================
 # ATR
@@ -72,6 +72,13 @@ ATR_PERIOD = 14
 ATR_LOOKBACK = 20
 
 MIN_ATR_PERCENT = 4.0
+# ============================================
+# EMA Trend
+# ============================================
+
+EMA_FAST = 20
+EMA_MID = 50
+EMA_SLOW = 200
 
 # ============================================
 # Alert Rules

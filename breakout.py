@@ -14,7 +14,7 @@ def check_breakout(symbol):
         candles = client.futures_klines(
             symbol=symbol,
             interval=Client.KLINE_INTERVAL_15MINUTE,
-            limit=20
+            limit=30
         )
 
         highs = [float(candle[2]) for candle in candles]
